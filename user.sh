@@ -9,6 +9,23 @@ mkdir -p ~/.themes ~/.fonts ~/.config
 # Fira Code Nerd Font variant needed
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
 unzip FiraCode.zip -d ~/.fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraMono.zip
+unzip FiraMono.zip -d ~/.fonts
+
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/DejaVuSansMono.zip
+unzip DejaVuSansMono.zip -d ~/.fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip
+unzip Hack.zip -d ~/.fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
+unzip JetBrainsMono.zip -d ~/.fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Noto.zip
+unzip Noto.zip -d ~/.fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SourceCodePro.zip
+unzip SourceCodePro.zip -d ~/.fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Ubuntu.zip
+unzip Ubuntu.zip -d ~/.fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/UbuntuMono.zip
+unzip UbuntuMono.zip -d ~/.fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
 unzip Meslo.zip -d ~/.fonts   
 fc-cache -vf
