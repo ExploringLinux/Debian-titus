@@ -39,8 +39,8 @@ git clone https://github.com/vinceliuice/Layan-cursors
 cd Layan-cursors
 sudo ./install.sh
 
-echo "RUN LXAPPEARANCE"
-cd ../
-cp .Xresources ~
-cp .Xnord ~
+#echo "RUN LXAPPEARANCE"
+#cd ../
+#cp .Xresources ~
+#cp .Xnord ~
 cp -R dotfiles/* ~/.config/

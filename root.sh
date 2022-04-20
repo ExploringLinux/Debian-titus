@@ -64,7 +64,7 @@ echo \
 apt-get update
 apt-get install -y docker-ce docker-ce-cli containerd.io
 usermod -aG docker $USER
-curl -L https://github.com/docker/compose/releases/download/2.4.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+curl -L https://github.com/docker/compose/releases/download/v2.4.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 #bspwm
 #firefox-esr
@@ -90,28 +90,17 @@ chmod +x /usr/local/bin/docker-compose
 # Download Nordic Theme
 
 ### install php 7.4
-apt-get install -y \
-    php7.4-bcmath \
-    php7.4-cli \
-    php7.4-common \
-    php7.4-curl \
-    php7.4-xml \
-    php7.4-imap \
-    php7.4-intl \
-    php7.4-mbstring \
-    php7.4-mysql \
-    php7.4-pcov \
-    php7.4-pgsql \
-    php7.4-soap \
-    php7.4-sqlite \
-    php7.4-sqlite3 \
-    php7.4-zip \
-    php7.4-memcached \
-    php7.4-gd \
-    php7.4-redis \
-    php7.4-xdebug \
-    php7.4-dev \
-    php7.4-imagick;
+wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+echo "deb https://packages.sury.org/php/ bullseye main" | sudo tee /etc/apt/sources.list.d/php.list
+wget http://ftp.us.debian.org/debian/pool/main/libf/libffi/libffi7_3.3-6_amd64.deb
+dpkg -i libffi7_3.3-6_amd64.deb
+apt-get update
+apt install php7.4
+apt-get install php7.4-{cli,json,imap,bcmath,bz2,intl,gd,mbstring,mysql,zip}
+systemctl disable --now apache2
+apt remove --purge -y apache*
+apt-get autoremove --purge -y && apt-get autoclean -y && apt-get clean -y
+apt install php7.4-fpm
 
 ## Update alternatives after installing php 7.4
 update-alternatives --set php /usr/bin/php7.4 && \
@@ -126,21 +115,17 @@ openvpn \
 meld --fix-missing \
 htop;
 
-apt remove -y apache2
-
 touch /etc/openvpn/credentials
 printf '%s\n' 'username' 'password' > /etc/openvpn/credentials
 
 apt-get install -y zsh
-# git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-# echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
-# git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-
-
-
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 
 ## Cleanup
 apt-get autoremove --purge -y && apt-get autoclean -y && apt-get clean -y \
-rm -rf /var/lib/apt/lists/* \
+rm -rf /var/lib/apt/lists/* && \
 rm -rf /tmp/* /var/tmp/*
