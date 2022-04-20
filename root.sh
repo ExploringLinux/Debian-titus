@@ -95,10 +95,12 @@ echo "deb https://packages.sury.org/php/ bullseye main" | sudo tee /etc/apt/sour
 wget http://ftp.us.debian.org/debian/pool/main/libf/libffi/libffi7_3.3-6_amd64.deb
 dpkg -i libffi7_3.3-6_amd64.deb
 apt-get update
-apt install php7.4
-apt-get install php7.4-{cli,json,imap,bcmath,bz2,intl,gd,mbstring,mysql,zip}
+apt install -y php7.4
+#apt-get install -y php7.4-{cli,json,imap,bcmath,bz2,intl,gd,mbstring,mysql,zip}
 systemctl disable --now apache2
 apt remove --purge -y apache*
+###### Remove Apache directory! rm -Rf /var/lib/apache2
+
 apt-get autoremove --purge -y && apt-get autoclean -y && apt-get clean -y
 apt install php7.4-fpm
 
