@@ -16,8 +16,45 @@ apt update
 ### important stuff for docker
 apt install -y apt-transport-https ca-certificates chromium curl firefox-esr git gnupg gnupg2 lsb-release neofetch sddm software-properties-common spice-vdagent terminator unzip zip
 
-apt install -y qt5-style-kvantum qt5-style-kvantum-themes
+apt install wget php-cli php-zip unzip
 
+# apt-get install -y \
+# g++ \
+# libbz2-dev \
+# libc-client-dev \
+# libcurl4-gnutls-dev \
+# libedit-dev \
+# libfreetype6-dev \
+# libicu-dev \
+# libjpeg62-turbo-dev \
+# libkrb5-dev \
+# libldap2-dev \
+# libldb-dev \
+# libmagickwand-dev \
+# libmcrypt-dev \
+# libmemcached-dev \
+# libpng-dev \
+# libpq-dev \
+# libsqlite3-dev \
+# libssl-dev \
+# libreadline-dev \
+# libxslt1-dev \
+# libzip-dev \
+# zlib1g-dev
+
+#### So this is a minimal, minimal install of kde.
+apt install -y --no-install-recommends kde-plasma-desktop plasma-nm
+
+### need a window manager
+apt install kwin-x11
+
+### need system settings and display settings
+apt install systemsettings xsettingsd kscreen
+
+### do some config with SDDM in Kde Settings
+apt install kde-config-sddm kde-config-gtk-style kde-config-screenlocker
+
+apt install -y qt5-style-kvantum qt5-style-kvantum-themes
 
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 echo \
@@ -27,7 +64,7 @@ echo \
 apt-get update
 apt-get install -y docker-ce docker-ce-cli containerd.io
 usermod -aG docker $USER
-curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+curl -L https://github.com/docker/compose/releases/download/2.4.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 #bspwm
 #firefox-esr
@@ -47,19 +84,63 @@ chmod +x /usr/local/bin/docker-compose
 #unzip yyyy
 #xorg
 #zip yyy
-#### So this is a minimal, minimal install of kde.
-apt install -y --no-install-recommends kde-plasma-desktop plasma-nm
-
-### need a window manager
-apt install kwin-x11
-
-### need system settings and display settings
-apt install systemsettings xsettingsd kscreen
-
-### do some config with SDDM in Kde Settings
-apt install kde-config-sddm kde-config-gtk-style kde-config-screenlocker
+#git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+#git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 # Download Nordic Theme
 
+### install php 7.4
+apt-get install -y \
+    php7.4-bcmath \
+    php7.4-cli \
+    php7.4-common \
+    php7.4-curl \
+    php7.4-xml \
+    php7.4-imap \
+    php7.4-intl \
+    php7.4-mbstring \
+    php7.4-mysql \
+    php7.4-pcov \
+    php7.4-pgsql \
+    php7.4-soap \
+    php7.4-sqlite \
+    php7.4-sqlite3 \
+    php7.4-zip \
+    php7.4-memcached \
+    php7.4-gd \
+    php7.4-redis \
+    php7.4-xdebug \
+    php7.4-dev \
+    php7.4-imagick;
+
+## Update alternatives after installing php 7.4
+update-alternatives --set php /usr/bin/php7.4 && \
+update-alternatives --set phar /usr/bin/phar7.4 && \
+update-alternatives --set phar.phar /usr/bin/phar.phar7.4
+
 #cd /usr/share/themes/
 #git clone https://github.com/EliverLara/Nordic.git
+apt install -y \
+install net-tools \
+openvpn \
+meld --fix-missing \
+htop;
+
+apt remove apache2
+
+touch /etc/openvpn/credentials
+printf '%s\n' 'username' 'password' > /etc/openvpn/credentials
+
+apt-get install zsh
+# git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+# echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+# git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+
+
+
+
+## Cleanup
+apt-get autoremove --purge -y && apt-get autoclean -y && apt-get clean -y \
+rm -rf /var/lib/apt/lists/* \
+rm -rf /tmp/* /var/tmp/*

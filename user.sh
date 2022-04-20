@@ -27,11 +27,11 @@ unzip Ubuntu.zip -d ~/.fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/UbuntuMono.zip
 unzip UbuntuMono.zip -d ~/.fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
-unzip Meslo.zip -d ~/.fonts   
+unzip Meslo.zip -d ~/.fonts
 fc-cache -vf
 
 #Ms-fonts
-sudo apt install ttf-mscorefonts-installer
+#sudo apt install ttf-mscorefonts-installer
 
 # Layan Cursors
 cd "$HOME/build"
