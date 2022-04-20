@@ -8,7 +8,7 @@ cp sources.list /etc/apt/sources.list
 #dpkg -i 'Custom Packages/rofi_1.7.0-1_amd64.deb'
 
 # Update packages list
-apt update
+apt update -y
 
 # Add base packages
 #apt install zip unzip picom bspwm polybar sddm rofi kitty terminator firefox thunar flameshot neofetch sxhkd git lxpolkit lxappearance xorg
@@ -16,7 +16,7 @@ apt update
 ### important stuff for docker
 apt install -y apt-transport-https ca-certificates chromium curl firefox-esr git gnupg gnupg2 lsb-release neofetch sddm software-properties-common spice-vdagent terminator unzip zip
 
-apt install wget php-cli php-zip unzip
+apt install -y wget unzip
 
 # apt-get install -y \
 # g++ \
@@ -46,13 +46,13 @@ apt install wget php-cli php-zip unzip
 apt install -y --no-install-recommends kde-plasma-desktop plasma-nm
 
 ### need a window manager
-apt install kwin-x11
+apt install -y kwin-x11
 
 ### need system settings and display settings
-apt install systemsettings xsettingsd kscreen
+apt install -y systemsettings xsettingsd kscreen
 
 ### do some config with SDDM in Kde Settings
-apt install kde-config-sddm kde-config-gtk-style kde-config-screenlocker
+apt install -y kde-config-sddm kde-config-gtk-style kde-config-screenlocker
 
 apt install -y qt5-style-kvantum qt5-style-kvantum-themes
 
@@ -126,12 +126,12 @@ openvpn \
 meld --fix-missing \
 htop;
 
-apt remove apache2
+apt remove -y apache2
 
 touch /etc/openvpn/credentials
 printf '%s\n' 'username' 'password' > /etc/openvpn/credentials
 
-apt-get install zsh
+apt-get install -y zsh
 # git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 # echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 # git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
