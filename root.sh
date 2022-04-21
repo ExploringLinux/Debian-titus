@@ -101,6 +101,10 @@ systemctl disable --now apache2
 apt remove --purge -y apache*
 ###### Remove Apache directory! rm -Rf /var/lib/apache2
 
+sudo systemctl disable docker.service
+sudo systemctl disable docker.socket
+#sudo systemctl disable docker.service docker.socket
+
 apt-get autoremove --purge -y && apt-get autoclean -y && apt-get clean -y
 apt install php7.4-fpm
 
@@ -121,11 +125,6 @@ touch /etc/openvpn/credentials
 printf '%s\n' 'username' 'password' > /etc/openvpn/credentials
 
 apt-get install -y zsh
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
-git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 
 ## Cleanup
 apt-get autoremove --purge -y && apt-get autoclean -y && apt-get clean -y \
