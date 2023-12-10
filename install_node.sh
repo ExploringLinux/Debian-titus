@@ -4,11 +4,10 @@ mkdir -p $HOME/.nvm && \
     cd $HOME && \
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash \
         && . .nvm/nvm.sh \
-        nvm install 10 && \
-        nvm install 12 && \
         nvm install 14 && \
         nvm install 16 && \
-        nvm install 17 && \
+        nvm install 18 && \
+        nvm install 20 && \
         nvm use 16 && \
         nvm alias default 16 && \
         && ln -s `npm bin --global` $HOME/.node-bin

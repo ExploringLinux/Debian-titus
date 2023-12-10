@@ -89,14 +89,16 @@ chmod +x /usr/local/bin/docker-compose
 
 # Download Nordic Theme
 
-### install php 7.4
+### install php 8.1
 wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 echo "deb https://packages.sury.org/php/ bullseye main" | sudo tee /etc/apt/sources.list.d/php.list
 wget http://ftp.us.debian.org/debian/pool/main/libf/libffi/libffi7_3.3-6_amd64.deb
 dpkg -i libffi7_3.3-6_amd64.deb
 apt-get update
-apt install -y php7.4
-#apt-get install -y php7.4-{cli,json,imap,bcmath,bz2,intl,gd,mbstring,mysql,zip}
+apt install -y php8.1
+apt-get install -y php8.1-{cli,json,imap,bcmath,bz2,intl,gd,mbstring,mysql,zip}
+apt install php8.1-fpm
+
 systemctl disable --now apache2
 apt remove --purge -y apache*
 ###### Remove Apache directory! rm -Rf /var/lib/apache2
@@ -106,12 +108,11 @@ sudo systemctl disable docker.socket
 #sudo systemctl disable docker.service docker.socket
 
 apt-get autoremove --purge -y && apt-get autoclean -y && apt-get clean -y
-apt install php7.4-fpm
 
-## Update alternatives after installing php 7.4
-update-alternatives --set php /usr/bin/php7.4 && \
-update-alternatives --set phar /usr/bin/phar7.4 && \
-update-alternatives --set phar.phar /usr/bin/phar.phar7.4
+## Update alternatives after installing php 8.1
+update-alternatives --set php /usr/bin/php8.1 && \
+update-alternatives --set phar /usr/bin/phar8.1 && \
+update-alternatives --set phar.phar /usr/bin/phar.phar8.1
 
 #cd /usr/share/themes/
 #git clone https://github.com/EliverLara/Nordic.git
