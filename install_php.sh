@@ -5,7 +5,7 @@ sudo echo "deb https://packages.sury.org/php/ bullseye main" | sudo tee /etc/apt
 sudo apt update \
   && sudo apt install -y php8.1-fpm \
   && sudo apt install -y \
-  php8.1-{bcmath,bz2,cli,curl,fpm,gd,intl,mbstring,mysql,redis,sockets,sqlite3,pcov,opcache,xml,zip}
+  php8.1-{bcmath,bz2,cli,curl,fpm,mbstring,mysql,redis,opcache,xml,zip}
 
 sudo update-alternatives --set php /usr/bin/php8.1 && \
 sudo update-alternatives --set phar /usr/bin/phar8.1 && \
